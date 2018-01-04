@@ -1,3 +1,18 @@
+/*
+ * Copyright (C) 2017 The Android Open Source Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package net.lightchat.mychat;
 
 import android.app.Activity;
@@ -108,19 +123,19 @@ public class MainActivity extends Activity {
         // mFragmentList.add(chatFragment);
 
         mBottomNavigation = findViewById(R.id.bottom_navigation);
-        mBottomNavigation.setAdapter(new MyGridViewAdapter(getApplicationContext()));
+        mBottomNavigation.setAdapter(new BottomNavigationGridViewAdapter(getApplicationContext()));
     }
 
     private static class ViewHolder {
         ImageView bottomNavigationIcon;
     }
 
-    private class MyGridViewAdapter extends BaseAdapter {
+    private class BottomNavigationGridViewAdapter extends BaseAdapter {
 
         private Context mContext;
         private LayoutInflater mInflater;
 
-        private MyGridViewAdapter(Context context) {
+        private BottomNavigationGridViewAdapter(Context context) {
             this.mContext = context;
             mInflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         }
@@ -156,14 +171,13 @@ public class MainActivity extends Activity {
                 imageView.setImageResource(navigationIcons[position]);
                 imageView.setContentDescription(navigationTexts[position]);
                 viewHolder.bottomNavigationIcon = imageView;
-
-                // convertView.setLayoutParams(new GridView.LayoutParams(px, px));
                 convertView.setTag(viewHolder);
             }
             return convertView;
         }
     }
 }
+
 /*
 private int[] bottomNavigationIcon = { R.drawable.address_book, R.drawable.calendar, R.drawable.camera, R.drawable.clock, R.drawable.games_control, R.drawable.messenger, R.drawable.ringtone, R.drawable.settings, R.drawable.speech_balloon, R.drawable.weather, R.drawable.world, R.drawable.youtube };
 private String[] iconName = { "通讯录", "日历", "照相机", "时钟", "游戏", "短信", "铃声", "设置", "语音", "天气", "浏览器", "视频" };
